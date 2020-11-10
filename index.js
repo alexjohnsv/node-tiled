@@ -4,15 +4,23 @@ const args = require('minimist')(process.argv.slice(2));
 
 const files = args._;
 
+const margin = args.m || 0;
+
+console.log(args);
+
 const numberOfFiles = files.length;
 
-const w = numberOfFiles * 16;
+const w = (numberOfFiles * 16) + (margin * (numberOfFiles - 1));
 const h = 16;
 
 const images = files.map((file, index) => {
+  let left = index * 16;
+  if (index > 0) {
+    left += margin;
+  }
   return {
     input: file,
-    left: index * 16,
+    left: left,
     top: 0,
   }
 })
