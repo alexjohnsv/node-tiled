@@ -6,7 +6,7 @@ const files = args._;
 
 const margin = args.m || 0;
 
-console.log(args);
+const fileOut = args.o || 'o/tileset.png';
 
 const numberOfFiles = files.length;
 
@@ -34,4 +34,4 @@ sharp({
   }
 })
 .composite(images)
-.toFile(args.o);
+.toFile(fileOut);
