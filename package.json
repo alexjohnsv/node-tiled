@@ -1,0 +1,8 @@
+{
+  "name": "tiled",
+  "version": "1.0.0",
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "sharp": "^0.26.2"
+  }
+}
