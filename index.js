@@ -22,7 +22,7 @@ const h = tile_height
 const images = files.map((file, index) => {
   let left = index * tile_width;
   if (index > 0) {
-    left += margin;
+    left += margin * index;
   }
   return {
     input: file,
@@ -45,11 +45,11 @@ image.toFile(fileOut);
 
 if (args.r) {
 
-  const images_index_ref = files.map((file, index) => {
+  const images_numbered = images.map((image, index) => {
     return {
       input: Buffer.from(createSvg(index)),
-      left: index * tile_width,
-      top: 0,
+      left: image.left,
+      top: image.top,
     }
   });
 
@@ -61,7 +61,7 @@ if (args.r) {
 
   const ref = image
                 .clone()
-                .composite([...images, ...images_index_ref])
+                .composite([...images, ...images_numbered])
                 .toFile(fileOutReference);
 }
 
