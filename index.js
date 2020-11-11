@@ -3,18 +3,22 @@ const sharp = require('sharp');
 const args = require('minimist')(process.argv.slice(2));
 
 const files = args._;
-
 const margin = args.m || 0;
-
 const fileOut = args.o || 'o/tileset.png';
+const tile_width = args.w || 16;
+const tile_height = args.h || 16;
 
 const numberOfFiles = files.length;
 
-const w = (numberOfFiles * 16) + (margin * (numberOfFiles - 1));
-const h = 16;
+if (numberOfFiles === 0) {
+  return;
+}
+
+const w = (numberOfFiles * tile_width) + (margin * (numberOfFiles - 1));
+const h = tile_height
 
 const images = files.map((file, index) => {
-  let left = index * 16;
+  let left = index * tile_width;
   if (index > 0) {
     left += margin;
   }
